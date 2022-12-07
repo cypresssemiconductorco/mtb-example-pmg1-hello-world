@@ -7,7 +7,7 @@
 * Related Document: See README.md
 *
 *******************************************************************************
-* Copyright 2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2021-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -44,7 +44,7 @@
  * Include header files
  ******************************************************************************/
 #include "cybsp.h"
-#include "cyhal.h"
+#include "cy_pdl.h"
 
 
 /*******************************************************************************
@@ -53,14 +53,6 @@
 #define LED_DELAY_MS              (500u)
 #define CY_ASSERT_FAILED          (0u)
 
-const cyhal_uart_cfg_t uartConfig =
-{
-    .data_bits      = 8,
-    .stop_bits      = 1,
-    .parity         = CYHAL_UART_PARITY_NONE,
-    .rx_buffer      = NULL,
-    .rx_buffer_size = 0
-};
 
 /*******************************************************************************
 * Function Name: main
@@ -82,10 +74,9 @@ const cyhal_uart_cfg_t uartConfig =
 int main(void)
 {
     cy_rslt_t result;
-    cyhal_uart_t uartObj;
+    cy_stc_scb_uart_context_t CYBSP_UART_context;
 
     const char string[] = "Hello world\r\n";
-    size_t stringSize = strlen(string);
 
     /* Initialize the device and board peripherals */
     result = cybsp_init();
@@ -96,25 +87,23 @@ int main(void)
         CY_ASSERT(CY_ASSERT_FAILED);
     }
 
-    /* Configure LED pin as a strong drive output */
-    cyhal_gpio_init(CYBSP_USER_LED, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_STRONG, false);
-
-    /* Configure and enable the UART peripheral. */
-    cyhal_uart_init(&uartObj, CYBSP_DEBUG_UART_TX, CYBSP_DEBUG_UART_RX, NULL, &uartConfig);
+    /* Configure and enable the UART peripheral */
+    Cy_SCB_UART_Init(CYBSP_UART_HW, &CYBSP_UART_config, &CYBSP_UART_context);
+    Cy_SCB_UART_Enable(CYBSP_UART_HW);
 
     /* Enable global interrupts */
     __enable_irq();
 
     /* Send a string over serial terminal */
-    cyhal_uart_write(&uartObj, (void *)string, &stringSize);
+    Cy_SCB_UART_PutString(CYBSP_UART_HW, string);
 
     for(;;)
     {
         /* Toggle the user LED state */
-        cyhal_gpio_toggle(CYBSP_USER_LED);
+        Cy_GPIO_Inv(CYBSP_USER_LED_PORT, CYBSP_USER_LED_PIN);
 
         /* Wait for 0.5 seconds */
-        cyhal_system_delay_ms(LED_DELAY_MS);
+        Cy_SysLib_Delay(LED_DELAY_MS);
     }
 }
 
