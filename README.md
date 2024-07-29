@@ -4,7 +4,7 @@ This code example demonstrates a simple UART communication by printing a "Hello 
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-pmg1-hello-world)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzE4NTUiLCJTcGVjIE51bWJlciI6IjAwMi0zMTg1NSIsIkRvYyBUaXRsZSI6IkVaLVBEJnRyYWRlOyBQTUcxIE1DVTogSGVsbG8gd29ybGQiLCJyaWQiOiJ2bmFsIiwiRG9jIHZlcnNpb24iOiIzLjEuMCIsIkRvYyBMYW5ndWFnZSI6IkVuZ2xpc2giLCJEb2MgRGl2aXNpb24iOiJNQ0QiLCJEb2MgQlUiOiJXSVJFRCIsIkRvYyBGYW1pbHkiOiJUWVBFLUMifQ==)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzE4NTUiLCJTcGVjIE51bWJlciI6IjAwMi0zMTg1NSIsIkRvYyBUaXRsZSI6IkVaLVBEJnRyYWRlOyBQTUcxIE1DVTogSGVsbG8gd29ybGQiLCJyaWQiOiJ2bmFsIiwiRG9jIHZlcnNpb24iOiIzLjIuMCIsIkRvYyBMYW5ndWFnZSI6IkVuZ2xpc2giLCJEb2MgRGl2aXNpb24iOiJNQ0QiLCJEb2MgQlUiOiJXSVJFRCIsIkRvYyBGYW1pbHkiOiJUWVBFLUMifQ==)
 
 
 ## Requirements
@@ -32,6 +32,8 @@ This code example demonstrates a simple UART communication by printing a "Hello 
 - [EZ-PD&trade; PMG1-S2 Prototyping kit](https://www.infineon.com/CY7112) (`PMG1-CY7112`)
 - [EZ-PD&trade; PMG1-S3 Prototyping kit](https://www.infineon.com/CY7113) (`PMG1-CY7113`)
 - [EZ-PD&trade; PMG1-B1 Prototyping Kit](https://www.infineon.com/EVAL_PMG1_B1_DRP) (`EVAL_PMG1_B1_DRP`)
+- [EZ-PD&trade; PMG1-S1 DRP Prototyping Kit](https://www.infineon.com/EVAL_PMG1_S1_DRP) (`EVAL_PMG1_S1_DRP`)
+- [EZ-PD&trade; PMG1-S3 DRP Prototyping Kit](https://www.infineon.com/EVAL_PMG1_S3_DUALDRP) (`EVAL_PMG1_S3_DUALDRP`)
 
 ## Hardware setup
 
@@ -46,6 +48,8 @@ Establish a UART connection between KitProg3 and the EZ-PD&trade; PMG1 device by
    | PMG1-CY7112 (revision 2 or lower) | J6.10 to J3.8 | J6.9 to J3.10 |
    | PMG1-CY7113 (revision 3 or lower) | J6.10 to J3.8 | J6.9 to J3.10 |
    | EVAL_PMG1_B1_DRP | SW5 to 1-2 position | SW4 to 1-2 position |
+   | EVAL_PMG1_S1_DRP | NC	| NC	|
+   | EVAL_PMG1_S3_DUALDRP | NC	| NC	|
      
 See the kit user guide to ensure that the board is configured correctly.
 
@@ -185,7 +189,7 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 
 1. Ensure that the steps listed in the [Hardware setup](#hardware-setup) section are complete.
 
-2. Ensure that the jumper shunt on the power selection jumper (J5) is placed at positions 2-3 to enable programming for PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, and PMG1-CY7113 kits. Skip this step for EVAL_PMG1_B1_DRP kit.
+2. Ensure that the jumper shunt on the power selection jumper (J5) is placed at positions 2-3 to enable programming for PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, PMG1-CY7113, EVAL_PMG1_S1_DRP, and EVAL_PMG1_S3_DUALDRP kits. Skip this step for EVAL_PMG1_B1_DRP kit.
 
 3. Connect the board to your PC using the USB cable through the KitProg3 USB connector. This cable is used for programming the EZ-PD&trade; PMG1 device and as a USB-to-UART bridge to the PC during operation.
 
@@ -218,13 +222,13 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
    ```
    </details>
 
-5. After programming the kit, disconnect the USB cable. Move to the next step for EVAL_PMG1_B1_DRP kit. Change the position on the power selection jumper (J5) to 1-2 to power the kit through the USB PD port (J10) for PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, and PMG1-CY7113 kits.
+5. After programming the kit, disconnect the USB cable. Move to the next step for EVAL_PMG1_B1_DRP kit. Change the position on the power selection jumper (J5) to 1-2 to power the kit through the USB PD port (J10) for PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, PMG1-CY7113 , EVAL_PMG1_S1_DRP ,and EVAL_PMG1_S3_DUALDRP kits.
 
 6. Connect the USB cable back to the KitProg3 USB connector and open a terminal program and select the KitProg3 COM port. Set the serial port parameters to 8N1 and 115200 baud.
 
-7. Connect the USB PD port to a USB-C power adapter or your PC using a USB Type-C cable to power the PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, and PMG1-CY7113 kits. The EVAL_PMG1_B1_DRP kit is automatically powered when the kit is connected through the KitProg3 USB Type-C port (J1). 
+7. Connect the USB PD port to a USB-C power adapter or your PC using a USB Type-C cable to power the PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, PMG1-CY7113, EVAL_PMG1_S1_DRP, and EVAL_PMG1_S3_DUALDRP kits. The EVAL_PMG1_B1_DRP kit is automatically powered when the kit is connected through the KitProg3 USB Type-C port (J1). 
 
-8. The application starts automatically for PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, and PMG1-CY7113 kits. Press the Reset Switch (SW3) on the EVAL_PMG1_B1_DRP kit to restart the application as the application already started when the kit was connected and powered through the KitProg3 USB Type-C port (J1). Confirm that "Hello world" is displayed on the UART terminal.
+8. The application starts automatically for PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, PMG1-CY7113, EVAL_PMG1_S1_DRP, and EVAL_PMG1_S3_DUALDRP kits. Press the Reset Switch (SW3) on the EVAL_PMG1_B1_DRP kit to restart the application as the application already started when the kit was connected and powered through the KitProg3 USB Type-C port (J1). Confirm that "Hello world" is displayed on the UART terminal.
 
    **Figure 1. "Hello world" in terminal output**
 
@@ -238,7 +242,7 @@ You can debug the example to step through the code.
 
 
 <details><summary><b>In Eclipse IDE</b></summary>
-Use the **\<Application Name> Debug (KitProg3_MiniProg4)** configuration in the **Quick Panel**. Ensure that the board is connected to your PC using the USB cable through the KitProg3 USB Type-C port (J1) and for PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, and PMG1-CY7113 prototyping kits the jumper shunt on power selection jumper (J5) is placed at position 1-2.
+Use the **\<Application Name> Debug (KitProg3_MiniProg4)** configuration in the **Quick Panel**. Ensure that the board is connected to your PC using the USB cable through the KitProg3 USB Type-C port (J1) and for PMG1-CY7110, PMG1-CY7111, PMG1-CY7112, PMG1-CY7113, EVAL_PMG1_S1_DRP, and EVAL_PMG1_S3_DUALDRP prototyping kits the jumper shunt on power selection jumper (J5) is placed at position 1-2.
 
 Please refer to the "Debug mode" section in the kit user guide for debugging the application on the CY7110 prototyping kit. Please refer to "Debugging using ModusToolbox&trade; software" section in [AN238945](https://infineon.com/an238945) for EVAL_PMG1_B1_DRP kit. For more details, see the "Program and debug" section in the [Eclipse IDE for ModusToolbox&trade; software user guide](https://www.infineon.com/MTBEclipseIDEUserGuide).
 
@@ -301,6 +305,7 @@ Document title: *CE231855* - *EZ-PD&trade; PMG1 MCU: Hello world*
  2.0.0   | Updated example to use HAL
  3.0.0   | Removed HAL <br/> Major update to support ModusToolbox&trade; v3.0. This version is not backward compatible with previous versions of ModusToolbox&trade; software
  3.1.0   | Update to support EVAL_PMG1_B1_DRP kit
+ 3.2.0   | Update to support EVAL_PMG1_S1_DRP and EVAL_PMG1_S3_DUALDRP kits
 
 <br>
 
